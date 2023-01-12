@@ -8,6 +8,9 @@ const shopRoutes = require('./routes/shop');
 const contactusRoute = require('./routes/contactus');
 const path = require('path');
 const rootDir = require('./utils/path');
+const errorController = require('./controllers/error')
+const contactController = require('./controllers/contact')
+
 
 app.use(bodyParser.urlencoded({extended:false}));
 app.use(express.static(path.join(__dirname, "public")));
@@ -21,14 +24,9 @@ app.use('/admin',adminRoutes);
 
 app.use(contactusRoute);
 
-app.use('/success', (req, res, next) => {
-    res.status(202).send("<h1>Form successfuly filled</h1>")
-})
+app.use('/success', contactController.getContactResponse);
 
-app.use('/',(req, res, next) => {
-    res.status(404).sendFile(path.join(rootDir, "views","404.html"));
-})
-
+app.use('/', errorController.get404);
 
 
 app.listen(3000);
