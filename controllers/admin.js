@@ -29,3 +29,6 @@ exports.getProducts = (req, res, next) => {
           });
     });
 }
+
+let arr = [1,2,3];
+arr.find
