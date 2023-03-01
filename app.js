@@ -19,7 +19,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use((req, res, next) => {
-  User.findById('5bab316ce0a7c75f783cb8a8')
+  User.findById('63fe6aa143cf504ad3fe8f5b')
     .then(user => {
       req.user = user;
       next();
@@ -31,6 +31,7 @@ app.use('/admin', adminRoutes);
 app.use(shopRoutes);
 
 app.use(errorController.get404);
+
 
 mongoose.connect('mongodb+srv://kevray:PijtPOeVwvAr46LP@cluster0.lyo81ic.mongodb.net/shop?retryWrites=true')
 .then(() => {
